@@ -2,20 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .flex-between {
+    @apply flex justify-between items-center
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  .pink-container {
+    @apply bg-gradient-to-tr from-soft-pink to-white flex items-center flex-col justify-center min-h-[530px] 
+  }
+
+  .main-container {
+     @apply bg-gradient-to-tr from-soft-pink to-tech-blue flex items-center flex-col justify-center min-h-[530px] 
+  }
+
+  .blue-container {
+    @apply bg-gradient-to-tr from-tech-blue to-white flex items-center flex-col justify-center min-h-[530px] 
+  }
+
+  .text-30-bold {
+    @apply text-[30px] font-bold
+  }
+
+  .heading {
+    @apply uppercase bg-black px-6 py-3 font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5
+  }
+
+  .sub-heading {
+    @apply text-[18px] leading-[28px] text-center max-w-5xl text-[#4A4A4A] my-5
+  }
+
+  .title
+  {
+    @apply text-[24px] font-bold text-[#4A4A4A] my-5
+  }
 }
