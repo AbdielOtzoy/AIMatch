@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useChat } from "ai/react";
-import { Send } from "lucide-react";
+import { Send, StopCircle } from "lucide-react";
 import { Session } from "next-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
@@ -13,8 +13,10 @@ const ChatForm = ({
   genderPreference: string;
   session: Session;
 }) => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: "/api/openai",
+  const routeapi = genderPreference == "men" ? "/api/openai/adrian" : "/api/openai/adriana";
+
+  const { messages, input, handleInputChange, handleSubmit, isLoading, stop } = useChat({
+    api: routeapi,
   });
 
   const nameBot = genderPreference === "men" ? "Adrian" : "Adriana";
@@ -101,12 +103,22 @@ const ChatForm = ({
           className="flex-1 resize-none rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows={1}
         />
-        <button
-          type="submit"
-          className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded-full h-10 w-10"
-        >
-          <Send size={20} />
-        </button>
+        {isLoading ? (
+          <button
+            type="button"
+            onClick={() => stop()}
+            className="p-2 rounded-full bg-red-500 text-white"
+          >
+            <StopCircle size={24} />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="p-2 rounded-full bg-blue-500 text-white"
+          >
+            <Send size={24} />
+          </button>
+        )}
       </form>
     </div>
   );

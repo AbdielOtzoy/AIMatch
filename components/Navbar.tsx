@@ -29,9 +29,9 @@ const Navbar = async () => {
               </div>
               <div className="flex gap-7">
                 <Link
-                  href="/chat"
+                  href="/prices"
                 >
-                  <p className="text-lg">Chat</p>
+                  <p className="text-lg">Prices</p>
 
                 </Link>
                 <form action={async () => {
