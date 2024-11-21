@@ -1,14 +1,13 @@
 import { auth, signIn, signOut } from "@/auth"
 import { LogOut } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import Link from "next/link"
 
 const Navbar = async () => {
 
   const session = await auth()
 
   return (
-    <div className="px-5 py-3 bg-white shadow-sm font-work-sans">
+    <div className="px-5 py-3 bg-white shadow-sm font-work-sans h-[62px]">
       <nav className="flex justify-between items-center">
         {
           session && session?.user ? (
@@ -28,12 +27,6 @@ const Navbar = async () => {
                 <p className="text-lg font-semibold">{session.user.name}</p>
               </div>
               <div className="flex gap-7">
-                <Link
-                  href="/prices"
-                >
-                  <p className="text-lg">Prices</p>
-
-                </Link>
                 <form action={async () => {
                   "use server";
                   await signOut({ redirectTo: '/' });
@@ -46,7 +39,9 @@ const Navbar = async () => {
               </div>
             </>
           ) : (
-            <div>
+            <div
+              className="flex gap-7 justify-center mt-2"
+            >
               <form
                 action={async () => {
                   "use server"

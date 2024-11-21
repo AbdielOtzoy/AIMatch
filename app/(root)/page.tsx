@@ -5,6 +5,7 @@ import Link from "next/link";
 import Cookies from 'js-cookie';
 
 export default function Home() {
+
   const handleCookie = (genderPreference: string) => {
     Cookies.set('genderPreference', genderPreference);
   }
